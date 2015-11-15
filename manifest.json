@@ -22,7 +22,10 @@
     }
     ],
   	"background": {
-    	"scripts": ["background.js"]
+    	"scripts": [
+            "player_popup.js",
+            "background.js"
+        ]
 
   	},
 	"options_page": "option.html",
