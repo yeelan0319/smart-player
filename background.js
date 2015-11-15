@@ -8,16 +8,15 @@ function genericOnClick(info, tab) {
 
 var whiteList = new RegExp("http://www.residentadvisor.net*");
 
-chrome.tabs.onActivated.addListener( function(info) {
+chrome.tabs.onActivated.addListener(function(info) {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         console.log("tab activate");
         var currentTab = tabs[0];
-	    var url = currentTab.url;
+	    	var url = currentTab.url;
 
 	    if(whiteList.test(url)) {
             console.log("in white list");
             showPageAction(currentTab);
-
 
             loadPlayerDependency(currentTab, function(){
                 chrome.tabs.executeScript(currentTab.id, {file: "parser/residentadvisor.net.js"});

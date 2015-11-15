@@ -55,7 +55,7 @@ $(document).ready(function(){
     if($albumNameEle.length == 1) {
         console.log("load player");
 
-        var albumName = $albumNameEle.text();
+        var albumName = $albumNameEle.text().replace(" EP", "");
         console.log(albumName);
         openPlayer(albumName);
     }
