@@ -21,5 +21,23 @@ function openPlayer(songName) {
 		});
   });
 }
-
+// chrome.tabs.onActivated.addListener(function(){
+// 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+//     console.log(tabs[0].url);
+// 	});
+// });
+var whiteList = new RegExp("http://www.residentadvisor.net*");
+chrome.tabs.onActivated.addListener( function(info) {
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+	    var url = tabs[0].url;
+	    if(whiteList.test(url)) {
+	    	console.log("Hooray!!!");
+	    }
+		});
+});
+// chrome.tabs.onActiveChanged.addListener( function(tabId, info) {
+//     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+// 	    console.log(tabs[0].url);
+// 		});
+// });
 chrome.contextMenus.create({"title":"Play Music!","contexts":["selection"], "onclick":genericOnClick});
