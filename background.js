@@ -4,16 +4,13 @@
 window.loaded = false;
 // A generic onclick callback function.
 function genericOnClick(info, tab) {
-	console.log(info);
-	window.nameOfSong = info.selectionText;
-	// chrome.tabs.getCurrent(function setred(tab){
-	// 	chrome.tabs.executeScript(tab.id, {
-	//     code: 'document.body.style.backgroundColor="red"'
-	// 	});
-	// });
+	openPlayer(info.selectionText)
+}
+
+function openPlayer(songName) {
 	chrome.tabs.getSelected(null, function(tab) {
 		// chorme.tabs.insertCSS(tab.id, )
-		chrome.tabs.executeScript(tab.id, {code: "var songName ='" + window.nameOfSong + "'; var loaded = '" + window.loaded + "'"}, function() {
+		chrome.tabs.executeScript(tab.id, {code: "var songName ='" + songName + "'; var loaded = '" + window.loaded + "'"}, function() {
 			console.log(window.nameOfSong);
 			chrome.tabs.executeScript(tab.id, {file: "jquery-2.1.4.min.js"}, function() {
 				chrome.tabs.executeScript(tab.id, {file: "deezer-sdk.js"}, function() {
@@ -24,14 +21,5 @@ function genericOnClick(info, tab) {
 		});
   });
 }
-
-function callPopupFunciton(nameOfSong, popup)
-{
-	console.log(popup);
-	popup.document.getElementById('status').textContent = nameOfSong;
-}
-
-
-
 
 chrome.contextMenus.create({"title":"Play Music!","contexts":["selection"], "onclick":genericOnClick});
