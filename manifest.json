@@ -8,6 +8,13 @@
 	    "48":"icon48.png",
 	    "128":"icon128.png"
     },
+    "page_action": {
+      "default_icon": {                    
+        "19": "icon19.png",       
+        "38": "icon38.png"         
+      },
+      "default_title": "SmartPlayer" 
+    },
 	"content_scripts": [
     {
       "matches": ["http://*/*"],
